@@ -2,13 +2,13 @@
     "version": 2,
     "builds": [
         {
-            "src": "./bin/server.js",
+            "src": "/bin/server.js",
             "use": "@now/node"
         }
     ],
     "routes":[
         {
-            "src": "/(.*)",
+            "src": "/bin/(.*)",
             "dest": "index.js"
         }
     ]
