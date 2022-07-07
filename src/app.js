@@ -28,5 +28,8 @@ app.use(function (req, res, next) {
 app.get('/', (req, res) => {
     res.send('Hello Cistech!')
 })
+app.get('/test', (req, res) => {
+    res.send('Hello Cistech! This is snother route')
+})
 
 module.exports = app
