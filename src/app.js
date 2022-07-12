@@ -2,12 +2,18 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const config = require('../config')
+const index = require('./routes/')
+const userRoute = require('./routes/user')
 const app = express();
-// const mongoose = require('mongoose')
-// const config = require('./config')
+const router = express.Router();
 
+const mongoose = require('mongoose')
 
-// mongoose.connect(config.connectionString)
+mongoose.connect(config.connectionString)
+
+const User = require('./models/user')
+
 
 app.use(bodyParser.json({ //define um limite para a requisão em JSON
     limit: '5mb'
@@ -25,11 +31,8 @@ app.use(function (req, res, next) {
     next();
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello Cistech!')
-})
-app.get('/test', (req, res) => {
-    res.send('Hello Cistech! This is snother route-2')
-})
+
+app.use('/', index)
+app.use('/user', userRoute)
 
 module.exports = app

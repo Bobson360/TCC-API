@@ -8,3 +8,5 @@ router.get('/', (req, res, next) => {
         version: "0.0.1",
     })
 })
+
+module.exports = router
