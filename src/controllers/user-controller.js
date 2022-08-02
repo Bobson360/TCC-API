@@ -27,5 +27,8 @@ exports.post = async (req, res, next) => {
             message: "usuário ja cadastrado"
         })
     }
+}
 
+exports.get = async (req, res, next) => {
+    res.status(200).send(await User.find({}))
 }
