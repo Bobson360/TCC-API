@@ -4,12 +4,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('../config')
 const index = require('./routes/')
-const userRoute = require('./routes/user')
+
+
 const app = express();
 const router = express.Router();
 
 const mongoose = require('mongoose')
 
+const userRoute = require('./routes/user')
+const cisternaRoute = require('./routes/cisterna')
 mongoose.connect(config.connectionString)
 
 const User = require('./models/user')
@@ -34,5 +37,6 @@ app.use(function (req, res, next) {
 
 app.use('/', index)
 app.use('/user', userRoute)
+app.use('/cisterna', cisternaRoute)
 
 module.exports = app

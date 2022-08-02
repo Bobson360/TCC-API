@@ -12,11 +12,20 @@ exports.print = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
-    console.log("HEllo")
+    console.log(req.body.email)
     var us = new User(req.body)
-    us.save()
-    res.status(200).send({
-        message: "Success!"
-    })
+    
+    try{
+        await us.save()
+        res.status(200).send({
+            message: "Success!"
+        })
+        
+    }catch(e){
+        console.log(e)
+        res.status(500).send({
+            message: "usuário ja cadastrado"
+        })
+    }
 
 }
