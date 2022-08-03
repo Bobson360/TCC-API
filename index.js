@@ -1,17 +1,48 @@
-// importando os pacotes para uso no arquivo index.js
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+'use strict'
+const app = require('./src/app')
+const http = require('http')
+const debug = require('debug')('nodestr:server')
 
-// crio um servidor express
-const app = express();
+const normalizePort = require('normalize-port');
 
-// aplico configurações para dentro do servidor express, adicionando middlewares (body-parser, morgan, cors)
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
 
-// o servidor irá rodar dentro da porta 9000
-app.listen(9000, () => console.log('Express started at http://localhost:9000'));
+const port = normalizePort(process.env.PORT || '3001')
+app.set('port', port)
+
+const server = http.createServer(app)
+
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
+
+console.log('API running on port ' + port)
+
+function onError(erros){
+    if(error.syscall != 'listen'){
+        throw error
+    }
+
+    const bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port
+
+        switch (error.code){
+            case 'EACCES':
+                console.error(bind + ' requires elevated privileges')
+                process.exit(1)
+                break
+            
+            case 'EADDINUSE':
+                console.error(bind + ' is already in use')
+                process.exit(1)
+                break
+        }
+}
+
+function onListening(){
+    const addr = server.address()
+    const bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port
+    debug('Listening on ' + bind)
+}
