@@ -43,7 +43,10 @@ exports.get = async (req, res, next) => {
     res.status(200).send(await Cisterna.find({}))
 }
 exports.getStatusCisterna = async (req, res, next) => {
-    res.status(200).send(req.params.id)
+    res.status(200).send(await Status.find({cisternaId: req.params.id}))
+}
+exports.getLastStatusCisterna = async (req, res, next) => {
+    res.status(200).send(await Status.find({cisternaId: req.params.id}).sort({created_at: -1 }).limit(1) )
 }
 exports.setStatusCisterna = async (req, res, next) => {
     var cis = new Status(req.body)
