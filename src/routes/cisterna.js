@@ -4,5 +4,8 @@ const CisternaController = require('../controllers/cisterna-controller')
 
 router.post('/', CisternaController.post)
 router.get('/', CisternaController.get)
+router.get('/status/:id', CisternaController.getStatusCisterna)
+router.get('/laststatus/:id', CisternaController.getLastStatusCisterna)
+router.post('/status', CisternaController.setStatusCisterna)
 
 module.exports = router
