@@ -19,10 +19,10 @@ const schema = new Schema({
         required: true,
         default: true,
     },
-    cpf: [{
+    cpf: {
         type: Number,
         required: true
-    }]
+    }
 },  {
     timestamps: {
         createdAt: 'created_at',
