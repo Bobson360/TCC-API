@@ -3,9 +3,9 @@
 // const config = require('../config')
 
 const mongoose = require('mongoose')
-const { Cisterna }  = require('../models/cistern.js')
-const { Status }  = require('../models/status.js')
-const { User }  = require('../models/user.js')
+const { Cisterna }  = require('../models/cisternModel.js')
+const { Status }  = require('../models/statusModel.js')
+const { User }  = require('../models/userModel.js')
 
 exports.print = async (req, res, next) => {
     console.log("Hello")

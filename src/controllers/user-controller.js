@@ -3,7 +3,7 @@
 // const config = require('../config')
 
 const mongoose = require('mongoose')
-const { User }  = require('../models/user.js')
+const { User }  = require('../models/userModel.js')
 
 
 exports.print = async (req, res, next) => {
