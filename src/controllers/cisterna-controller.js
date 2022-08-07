@@ -3,7 +3,7 @@
 // const config = require('../config')
 
 const mongoose = require('mongoose')
-const { Cisterna }  = require('../models/cisterna.js')
+const { Cisterna }  = require('../models/cistern.js')
 const { Status }  = require('../models/status.js')
 const { User }  = require('../models/user.js')
 
