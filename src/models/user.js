@@ -14,19 +14,23 @@ const schema = new Schema({
         trim: true,
         index: { unique: true }
     },
-    status: {
+    adress: {
         type: Boolean,
         required: true,
         default: true,
     },
-    rules: [{
-        type: String,
-        enum: ['user', 'admin'],
-        default: 'user'
+    cpf: [{
+        type: Number,
+        required: true
     }]
-})
+},  {
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+      }
+   })
 
-const User = mongoose.model('user', schema)
-exports.User = User
+const user = mongoose.model('user', schema)
+exports.User = user
 
 
