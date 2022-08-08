@@ -9,20 +9,20 @@ const schema = new Schema({
         required: true
     },
     level: {
-        type: String,
+        type: Number,
         required: true,
     },
     moisture: {
         type: Number,
-        required: true,
+        required: false,
     },
     temp: {
         type: Number,
-        require: true
+        require: false
     },
     rfid: {
         type: String,
-        require: true
+        require: false
     },
     its_rain: {
         type: Boolean,
@@ -31,8 +31,7 @@ const schema = new Schema({
   
 },  {
     timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at' 
+        createdAt: 'created_at'
       }
    })
 

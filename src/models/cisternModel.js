@@ -4,13 +4,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    userId: {
+    user_id: {
         type: String,
         required: true
     },
      status: {
         type: Boolean,
-        required: true
+        required: false,
+        default: false
     },
     geo_location:{
          type: String,
@@ -22,8 +23,8 @@ const schema = new Schema({
      }
 },  {
     timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at' 
+        created_at: 'created_at',
+        updated_At: 'updated_at' 
       }
    })
 

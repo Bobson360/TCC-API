@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const CisternaController = require('../controllers/cisterna-controller')
+const CisternaController = require('../controllers/cisternController')
 
 router.post('/', CisternaController.post)
 router.get('/', CisternaController.get)
-router.get('/status/:id', CisternaController.getStatusCisterna)
+router.get('/:id', CisternaController.getCisterna)
 router.get('/laststatus/:id', CisternaController.getLastStatusCisterna)
-router.post('/status', CisternaController.setStatusCisterna)
+router.post('/status', CisternaController.setStatus)
 
 module.exports = router
