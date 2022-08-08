@@ -30,7 +30,7 @@ const schema = new Schema({
       }
    })
 
-const user = mongoose.model('user', schema)
-exports.User = user
+const User = mongoose.model('User', schema)
+exports.User = User
 
 

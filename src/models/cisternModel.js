@@ -27,7 +27,7 @@ const schema = new Schema({
       }
    })
 
-const cistern = mongoose.model('cistern', schema)
-exports.Cistern = cistern
+const Cistern = mongoose.model('Cistern', schema)
+exports.Cistern = Cistern
 
 

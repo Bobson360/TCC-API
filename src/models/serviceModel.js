@@ -45,7 +45,7 @@ const schema = new Schema({
       }
    })
 
-const User = mongoose.model('user', schema)
-exports.User = User
+const Service = mongoose.model('Service', schema)
+exports.Service = Service
 
 
