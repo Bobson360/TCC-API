@@ -15,7 +15,13 @@ const userRoute = require('./routes/user')
 const cisternaRoute = require('./routes/cisterna')
 mongoose.connect(config.connectionString)
 
-const User = require('./models/user')
+const cistern = require('./models/userModel')
+const dataModule = require('./models/userModel')
+const moduleModel = require('./models/userModel')
+const serviceModule = require('./models/userModel')
+const statusModule = require('./models/userModel')
+const suplierModule = require('./models/userModel')
+const UserModule = require('./models/userModel')
 
 
 app.use(bodyParser.json({ //define um limite para a requisão em JSON

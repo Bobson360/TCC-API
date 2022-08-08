@@ -12,17 +12,22 @@ const schema = new Schema({
         type: Boolean,
         required: true
     },
-     latitude:{
+    geo_location:{
          type: String,
          required: false
         },
-        longitude:{
+    module_id: {
             type: String,
             required: false
      }
-})
+},  {
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at' 
+      }
+   })
 
-const Cisterna = mongoose.model('cisterna', schema)
-exports.Cisterna = Cisterna
+const cistern = mongoose.model('cistern', schema)
+exports.Cistern = cistern
 
 
