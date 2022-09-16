@@ -22,6 +22,7 @@ const serviceModule = require('./models/userModel')
 const statusModule = require('./models/userModel')
 const suplierModule = require('./models/userModel')
 const UserModule = require('./models/userModel')
+const TestModuleEsp32Http = require('./models/testehttpModule')
 
 
 app.use(bodyParser.json({ //define um limite para a requisão em JSON

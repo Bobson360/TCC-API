@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const testController = require('../controllers/testController')
+
+router.post('/TestModuleEsp32Http', testController.post)
 
 router.get('/', (req, res, next) => {
     res.status(200).send({
