@@ -23,10 +23,6 @@ const schema = new Schema({
         type: Number,
         require: true
     },
-    temperature: {
-        type: Number,
-        required: false
-    },
     status: {
         type: String,
         required: false,
