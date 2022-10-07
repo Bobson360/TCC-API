@@ -51,15 +51,19 @@ exports.authenticate = async (req, res, next) => { // METODO PARA AUTENTICAÇÃO
     try {
 
         console.log('__AUTHENTICATE__TRY__1')
-        console.log(`Controller - ${req.body.email}`)
+        console.log(`REQ `)
+        console.log(req.body)
         const admin = await repository.authenticate({
             email: req.body.email,
             password: md5(req.body.password + global.SALT_KEY)
         })
-        console.log(admin.email)
-        if (!admin) {
-            res.status(404).send({
-                message: 'usuario ou senha ivalido'
+        console.log('admin')
+        console.log(admin)
+        if (admin == null) {
+            res.status(401).send({
+                status: 401,
+                message: "User does not exist!",
+                path: req.params
             })
         }
         const token = await authService.generateToken({
@@ -77,9 +81,9 @@ exports.authenticate = async (req, res, next) => { // METODO PARA AUTENTICAÇÃO
 
         })
     } catch (e) {
-        res.status(500).send({
-            message: "Falha ao processar sua requisição!"
-        })
+        // res.status(500).send({
+        //     message: "Falha ao processar sua requisição!"
+        // })
     }
 }
 
@@ -131,8 +135,6 @@ exports.book = async (req, res, next) => {
 
 
 exports.verifyToken = async (req, res, next) => {
-    console.log(`${req.body.token}`)
-    console.log(`${req.headers['authorization'].split(' ')[1]}`)
     const data = await authService.decodeToken(req.headers['authorization'].split(' ')[1])
     res.status(201).send(data)
 }
