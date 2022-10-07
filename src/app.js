@@ -25,6 +25,8 @@ const suplierModule = require('./models/userModel')
 const UserModule = require('./models/userModel')
 const AdmnModel = require('./models/adminModel')
 
+const cors = require('cors'); //5.2k (gzipped: 2.1k)
+
 
 app.use(bodyParser.json({ //define um limite para a requisão em JSON
     limit: '5mb'
@@ -34,13 +36,19 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 // Habilita o CORS
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
-})
+// app.use(function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//     next();
+// })
 
 
 app.use('/', index)
