@@ -21,7 +21,14 @@ const schema = new Schema({
     },
     cpf: {
         type: Number,
-        required: true
+        required: true,
+        index: { unique: true }
+    },
+    level: {
+        type: String,
+        required: false,
+        default: 'user',
+        enum: ['usuario', 'fornecedor', 'admin', 'God'],
     }
 },  {
     timestamps: {
