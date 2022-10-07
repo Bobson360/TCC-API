@@ -25,7 +25,7 @@ const schema = new Schema({
       }
    })
 
-const Status = mongoose.model('status', schema)
+const Status = mongoose.model('Status', schema)
 exports.Status = Status
 
 

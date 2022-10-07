@@ -3,7 +3,7 @@
 // const config = require('../config')
 
 const mongoose = require('mongoose')
-const { Cisterna }  = require('../models/cisternModel.js')
+const { Cistern }  = require('../models/cisternModel.js')
 const { Status }  = require('../models/statusModel.js')
 const { User }  = require('../models/userModel.js')
 
@@ -13,7 +13,7 @@ exports.print = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
-    var cis = new Cisterna(req.body)
+    var cis = new Cistern(req.body)
     const c = await User.findOne({
         _id: req.body.userId
     })
@@ -40,7 +40,7 @@ exports.post = async (req, res, next) => {
 }
 
 exports.get = async (req, res, next) => {
-    res.status(200).send(await Cisterna.find({}))
+    res.status(200).send(await Cistern.find({}))
 }
 exports.getStatusCisterna = async (req, res, next) => {
     res.status(200).send(await Status.find({cisternaId: req.params.id}))
@@ -50,7 +50,7 @@ exports.getLastStatusCisterna = async (req, res, next) => {
 }
 exports.setStatusCisterna = async (req, res, next) => {
     var cis = new Status(req.body)
-    const c = await Cisterna.findOne({
+    const c = await Cistern.findOne({
         _id: req.body.cisternaId
     })
 
