@@ -24,7 +24,7 @@ const schema = new Schema({
     },
     isVerified:{
         type: Boolean,
-        required: true
+        required: false
     }
 },  {
     timestamps: {

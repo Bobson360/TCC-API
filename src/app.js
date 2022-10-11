@@ -14,6 +14,7 @@ const mongoose = require('mongoose')
 const userRoute = require('./routes/user')
 const cisternaRoute = require('./routes/cisterna')
 const adminRoute = require('./routes/adminRoutes')
+const iotRoute = require('./routes/iot')
 mongoose.connect(config.connectionString)
 
 const cistern = require('./models/userModel')
@@ -53,6 +54,7 @@ app.use(cors(corsOptions))
 
 app.use('/', index)
 app.use('/admin', adminRoute)
+app.use('/iot', iotRoute)
 app.use('/user', userRoute)
 app.use('/cisterna', cisternaRoute)
 

@@ -1,15 +1,15 @@
 'use strict'
 
-const ValidationContract = require('./fluentValidators')
+const ValidationContract = require('./auth/fluentValidators')
 const repository = require('./adminRepository')
 const md5 = require('md5')
-const authService = require('./auth')
+const authService = require('./auth/auth')
 
 
 exports.register = async (req, res, next) => { // METODO PARA CADASTRO DE USUARIOS ADMINISTRADORES
     console.log(req.body)
     let contract = new ValidationContract() //cadastro de usuário
-    contract.hasMinLen(req.body.name, 3, 'o nome deve conter pelo menos 3 caracteres')
+    contract.hasMinLen(req.body.username, 3, 'o nome deve conter pelo menos 3 caracteres')
     contract.isEmail(req.body.email, 'Email invalido')
     contract.hasMinLen(req.body.password, 3, 'a senha deve conter pelo menos 3 caracteres')
 
@@ -22,9 +22,11 @@ exports.register = async (req, res, next) => { // METODO PARA CADASTRO DE USUARI
     try {
         console.log('__TRY__')
         await repository.create({
-            name: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: md5(req.body.password + global.SALT_KEY),
+            provider: req.body.provider,
+            isVerified: req.body.isVerified,
             
         })
 
