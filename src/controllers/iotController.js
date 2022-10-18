@@ -8,7 +8,7 @@ exports.getTagRfid = async (req, res, next) => {
     if(req.query.tag_rfid  == 'AC EE 32 4A' | req.query.tag_rfid  == 'ACEE324A' ) {
         res.status(200).send()
     }
-    res.status(500).send()
+    res.status(404).send()
 }
 
 exports.getAllTagsRfid = async (req, res, next) => {
