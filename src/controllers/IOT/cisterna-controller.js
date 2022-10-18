@@ -8,7 +8,10 @@ const { Status }  = require('../../models/statusModel.js')
 const { User }  = require('../../models/userModel.js')
 const { Device }  = require('../../models/IOT/deviceModel')
 
+const waterSuppliesType = require('../../repositories/waterSuppliesType')
 const cisRepo = require('../../repositories/cisternRepository') // Cistern Ropository
+const res = require('express/lib/response')
+const statusRepository = require('../../repositories/statusRepository')
 
 exports.print = async (req, res, next) => {
     console.log("Hello")
@@ -66,29 +69,30 @@ exports.getLastStatusCisterna = async (req, res, next) => {
  * 
  */
 exports.setStatusCisternaByGateWay = async (req, res, next) => {
-    console.log(req.query)
-    var cis = new Status(req.params)
-    const c = await Cistern.findOne({
-        _id: req.body.cisternaId
-    })
-
-    if(c){
-        
-        try{
-            await cis.save()
-            res.status(200).send({
-                message: "Success!"
-            })
-            
-        }catch(e){
-            console.log(e)
-            res.status(500).send({
-                message: "Falha ao salvar o registro"
-            })
-        }
-    }else{
-        res.status(500).send({
-            message: "ID inexistente ou invalido"
-        })
+    const data = {
+        module_id: req.query.module_id,
+        nivel: req.query.nivel,
+        abastecimento: req.query.abastecimento,
     }
+    const d = await statusRepository.newCisternStatus( data )
+        res.status(d).send()
+}
+
+exports.getAllWaterSuppliesTypes = async ( req, res, nex ) => {
+    const data = await waterSuppliesType.getAllWaterSuppliesTypes()
+    res.status(200).send(data)
+}
+exports.getWaterSuppliesTypes = async ( req, res, nex ) => {
+    res.status(200).send(`Hello ${req.params.id}`)
+    
+}
+exports.newWaterSuppliesTypes = async ( req, res, nex ) => {
+    try {
+        var a = waterSuppliesType.newWaterSuppliesTypes( req.body )
+        res.status(200).send(a)
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+    
 }

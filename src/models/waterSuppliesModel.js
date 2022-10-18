@@ -4,22 +4,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    module_id: {
+    text: {
         type: String,
         required: true
     },
-     nivel: {
+     type: {
         type: Number,
-        required: true
-    },
-    abastecimento:{
-        type: Number,
-        default: 0,enum: [
-            0, // modo consumo
-            1, // modo abastecimento pluvial
-            2, // modo abastecimento caminhão pipa
-            3  // modo abastecimento outros
-        ]
+        required: true,
+        index: { unique: true }
     }
    },  {
     timestamps: {
@@ -28,7 +20,7 @@ const schema = new Schema({
       }
    })
 
-const Status = mongoose.model('Status', schema)
-exports.Status = Status
+const waterSupplies = mongoose.model('waterSupplies', schema)
+exports.waterSupplies = waterSupplies
 
 

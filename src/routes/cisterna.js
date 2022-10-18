@@ -7,6 +7,9 @@ router.get('/', CisternaController.get)
 router.get('/deviceId', CisternaController.getCisternIdByDeviceId)
 router.get('/status/:id', CisternaController.getStatusCisterna)
 router.get('/laststatus/:id', CisternaController.getLastStatusCisterna)
-router.post('/status', CisternaController.setStatusCisternaByGateWay)
+router.get('/status', CisternaController.setStatusCisternaByGateWay)
+router.get('/abastecimento', CisternaController.getAllWaterSuppliesTypes)
+router.get('/abastecimento/:id', CisternaController.getWaterSuppliesTypes)
+router.post('/abastecimento', CisternaController.newWaterSuppliesTypes)
 
 module.exports = router
