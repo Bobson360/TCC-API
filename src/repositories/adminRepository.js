@@ -11,7 +11,8 @@ exports.create = async(data) => {
     console.log('__METODO CREATE__')
     console.log(data)
     var admin = new Admin(data)
-    await admin.save() 
+    await admin.save()
+    
 }
 
 exports.createUser = async(data) => {

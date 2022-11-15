@@ -15,13 +15,13 @@ const schema = new Schema({
         index: { unique: true }
     },
     adress: {
-        type: Boolean,
+        type: String,
         required: true,
-        default: true,
     },
     cpf: {
         type: String,
-        require: true
+        require: true,
+        index: { unique: true }
     },
     vehicle: {
         type: String,
@@ -38,7 +38,8 @@ const schema = new Schema({
     },
     tag_id: {
         type: String,
-        required: false
+        required: false,
+        index: { unique: true }
     }
   
 },  {

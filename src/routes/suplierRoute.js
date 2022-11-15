@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const supplierController = require('../controllers/supplier-controller')
 
-router.get('/', ( req, res ) => {
-    res.status(200).send({ route: "get all supliers" })
-})
-
-router.post('/', ( req, res ) => {
-    res.status(200).send({ route: "new Supplier" })
-})
+router.get('/', supplierController.getAllSuppliers)
+router.post('/', supplierController.newSupplier)
+router.get('/:id', supplierController.getSupplier)
+router.get('/getSupplierFree', supplierController.getSupplierFree)
 
 module.exports = router
