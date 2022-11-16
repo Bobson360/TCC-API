@@ -20,14 +20,14 @@ exports.print = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
     var cis = new Cistern(req.body)
-    const c = await User.findOne({
+    console.log(req.body.userId)
+    const c  = await User.findOne({
         _id: req.body.userId
     })
-
+ 
     if(c){
-        
         try{
-            await cis.save()
+             cis.save()
             res.status(200).send({
                 message: "Success!"
             })
