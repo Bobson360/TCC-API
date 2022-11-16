@@ -37,6 +37,15 @@ exports.newSupplier = async (req, res, next) => {
 exports.getSupplier = async (req, res, next) => {
 
 }
+
+/**
+ * 
+ * implementar lógica para fornecedor disponivel
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.getSupplierFree = async (req, res, next) => {
 
 }

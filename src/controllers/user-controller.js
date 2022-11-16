@@ -12,7 +12,6 @@ exports.print = async (req, res, next) => {
 }
 
 exports.post = async (req, res, next) => {
-    console.log(req.body.email)
     var us = new User(req.body)
     
     try{
@@ -29,6 +28,10 @@ exports.post = async (req, res, next) => {
     }
 }
 
-exports.get = async (req, res, next) => {
+exports.getAll = async (req, res, next) => {
     res.status(200).send(await User.find({}))
+}
+
+exports.get = async (req, res, next) => {
+    res.status(200).send(await User.findOne({_id: req.params.id}))
 }
