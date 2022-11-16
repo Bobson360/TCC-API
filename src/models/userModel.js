@@ -15,12 +15,12 @@ const schema = new Schema({
         index: { unique: true }
     },
     adress: {
-        type: Boolean,
+        type: String,
         required: true,
         default: true,
     },
     cpf: {
-        type: Number,
+        type: String,
         required: true,
         index: { unique: true }
     },
@@ -28,7 +28,7 @@ const schema = new Schema({
         type: String,
         required: false,
         default: 'user',
-        enum: ['usuario', 'fornecedor', 'admin', 'God'],
+        enum: ['user', 'fornecedor', 'admin', 'God'],
     }
 },  {
     timestamps: {

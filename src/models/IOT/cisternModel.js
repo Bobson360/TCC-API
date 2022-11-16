@@ -12,7 +12,11 @@ const schema = new Schema({
         type: Boolean,
         required: true
     },
-    geo_location:{
+    lat:{
+         type: String,
+         required: false
+        },
+    lng:{
          type: String,
          required: false
         },
