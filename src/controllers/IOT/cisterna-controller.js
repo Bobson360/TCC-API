@@ -6,11 +6,9 @@ const mongoose = require('mongoose')
 const { Cistern }  = require('../../models/IOT/cisternModel.js')
 const { Status }  = require('../../models/statusModel.js')
 const { User }  = require('../../models/userModel.js')
-const { Device }  = require('../../models/IOT/deviceModel')
 
 const waterSuppliesType = require('../../repositories/waterSuppliesType')
 const cisRepo = require('../../repositories/cisternRepository') // Cistern Ropository
-const res = require('express/lib/response')
 const statusRepository = require('../../repositories/statusRepository')
 
 exports.print = async (req, res, next) => {
@@ -95,4 +93,37 @@ exports.newWaterSuppliesTypes = async ( req, res, nex ) => {
         res.status(500).send({Error: error})
     }
     
+}
+
+exports.newScheduling = async ( req, res, nex ) => {
+    try {
+        var a = cisRepo.newSchedulingRepository( req.body )
+        res.status(200).send(a)
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+}
+
+exports.getCisternByUserController = async ( req, res, nex ) => {
+
+    console.log(req.body.user)
+    try {
+        var a = await cisRepo.getCisternByUser( req.body.user )
+        res.status(200).send(a)
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+}
+exports.getSchedulesController = async ( req, res, nex ) => {
+    try {
+        var a = await cisRepo.getSchedulesRepository(  )
+        setTimeout(() => {
+            res.status(200).send(a)
+        }, 500);
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
 }

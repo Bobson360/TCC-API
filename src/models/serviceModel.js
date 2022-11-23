@@ -12,16 +12,22 @@ const schema = new Schema({
         type: String,
         required: true,
         trim: true,
-        index: { unique: true }
+        
     },
     scheduled_to: {
-        type: Date,
+        type: String,
         required: true,
-        default: true,
+    },
+    period: {
+        type: String,
+        required: true,
+        default: 'manhã',
+        enum: ['manhã', 'tarde'],
     },
     volume: {
         type: Number,
-        require: true
+        require: false,
+        default: 5000
     },
     status: {
         type: String,

@@ -4,6 +4,7 @@
 
 const mongoose = require('mongoose')
 const { User }  = require('../models/userModel.js')
+const { getCisternByUser } = require('../repositories/cisternRepository')
 
 
 exports.print = async (req, res, next) => {
@@ -34,4 +35,18 @@ exports.getAll = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
     res.status(200).send(await User.findOne({_id: req.params.id}))
+}
+
+exports.getUserWithCisternsId = async (req, res, next) => {
+    let userWithCisternId = []
+    const user = await User.find({})
+    user.forEach( async (e) =>  {
+        var cis = await getCisternByUser(e._id)
+        if(cis)
+            userWithCisternId.push({...e._doc, cisternId: cis._id})
+    });
+    
+    setTimeout(() => {
+        res.status(200).send(userWithCisternId)
+    }, 100);
 }

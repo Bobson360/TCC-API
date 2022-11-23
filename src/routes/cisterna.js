@@ -11,5 +11,8 @@ router.get('/status', CisternaController.setStatusCisternaByGateWay)
 router.get('/abastecimento', CisternaController.getAllWaterSuppliesTypes)
 router.get('/abastecimento/:id', CisternaController.getWaterSuppliesTypes)
 router.post('/abastecimento', CisternaController.newWaterSuppliesTypes)
+router.post('/agendamento', CisternaController.newScheduling)
+router.get('/agendamento', CisternaController.getSchedulesController)
+router.post('/getCisternByUser', CisternaController.getCisternByUserController)
 
 module.exports = router

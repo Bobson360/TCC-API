@@ -47,7 +47,7 @@ exports.getSupplier = async (req, res, next) => {
  * @param {*} next 
  */
 exports.getSupplierFree = async (req, res, next) => {
-
+    res.status(200).send(await repository.findAllFree(req.body))
 }
 
 exports.print = async (req, res, next) => {
