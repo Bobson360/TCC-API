@@ -7,7 +7,8 @@ const schema = new Schema(
   {
     device_id: {
       type: String,
-      required: true
+      required: true,
+      index: { unique: true }
     },
     type: {
       type: String,

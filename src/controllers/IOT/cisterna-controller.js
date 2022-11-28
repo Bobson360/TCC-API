@@ -25,7 +25,7 @@ exports.post = async (req, res, next) => {
  
     if(c){
         try{
-             cis.save()
+             await cis.save()
             res.status(200).send({
                 message: "Success!"
             })
@@ -33,7 +33,7 @@ exports.post = async (req, res, next) => {
         }catch(e){
             console.log(e)
             res.status(500).send({
-                message: "Falha ao salvar o registro"
+                error: e
             })
         }
     }else{
