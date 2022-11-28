@@ -34,3 +34,13 @@ exports.registerDevice = async ( req, res, next ) => {
     const response = await iotRepository.registerDevice( req.body )
     res.status(200).send( response )
 }
+
+exports.getDevices = async ( req, res, next ) => {
+    const response = await iotRepository.getAllDevices( )
+    res.status(200).send( response )
+}
+
+exports.getAllDevicesFree = async ( req, res, next ) => {
+    const response = await iotRepository.getAllDevicesFree( )
+    res.status(200).send( response )
+}

@@ -9,5 +9,7 @@ router.post('/tag_rfid', IotController.newTagRFID)
 router.get('/devices/:id', IotController.getDevice)
 router.get('/devices', IotController.getAllDevices)
 router.post('/device', IotController.registerDevice)
+router.get('/device', IotController.getDevices)
+router.get('/devices-free', IotController.getAllDevicesFree)
 
 module.exports = router
