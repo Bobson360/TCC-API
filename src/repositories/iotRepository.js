@@ -3,7 +3,6 @@
 const { Cistern } = require('../models/IOT/cisternModel')
 const { Device }  = require('../models/IOT/deviceModel')
 const { TagRFID }  = require('../models/IOT/tagRfidModel')
-const { Service }  = require('../models/serviceModel')
 
 /**
  *      Verifica se a tag está cadastrada
@@ -29,8 +28,6 @@ exports.getCisternIdByDeviceId = async (req, res, next) => {
 }
 
 exports.newTagRFID = async ( req ) => {
-    console.log("Repository")
-    console.log(req.body)
     var tag = TagRFID(req.body)
     console.log(tag)
    return await tag.save()
@@ -53,17 +50,22 @@ exports.getAllDevicesFree = async ( req, res, next ) => {
     const cisterns = await Cistern.find()
 
     const devicesInCistern = new Set(cisterns.map( el => el.module_id ))
-    console.log(devicesInCistern)
     const devicesFree = devices.filter(el => !devicesInCistern.has(el.id) && el.type != "Gateway")
-    console.log(devicesFree)
-    if(devicesFree)
-        return {message: "Todos os dispositivos estão em uso. Cadastre mais dispositivos"}
     return devicesFree 
 }
 
 exports.registerDevice = async ( body ) => {
     try {
         return await Device( body ).save()
+    } catch (error) {
+        return error
+    }
+}
+
+exports.deleteDevice = async ( id ) => {
+    console.log(id)
+    try {
+        return Device.findByIdAndDelete(id)
     } catch (error) {
         return error
     }

@@ -16,7 +16,6 @@ exports.getAllTagsRfid = async (req, res, next) => {
 }
 
 exports.newTagRFID = async ( req, res, next ) => {
-    console.log(req.body)
     let msg = iotRepository.newTagRFID( req )
     res.status(200).send(msg)
 }
@@ -43,4 +42,10 @@ exports.getDevices = async ( req, res, next ) => {
 exports.getAllDevicesFree = async ( req, res, next ) => {
     const response = await iotRepository.getAllDevicesFree( )
     res.status(200).send( response )
+}
+
+exports.deleteDevice = async ( req, res, next ) => {
+    console.log(req.params.id)
+    const response = await iotRepository.deleteDevice( req.params.id )
+    res.status(200).send( response? {message: "deletado com sucesso"}: {message: "id não encontrado"} )
 }
