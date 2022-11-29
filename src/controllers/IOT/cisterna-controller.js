@@ -47,6 +47,11 @@ exports.get = async (req, res, next) => {
     res.status(200).send(await Cistern.find({}))
 }
 
+exports.put = async (req, res, next) => {
+    console.log(req.body)
+    res.status(200).send(await cisRepo.updateCistern(req.body))
+}
+
 exports.getCisternIdByDeviceId = async (req, res, next) => {
     cisRepo.getCisternIdByDeviceId(red)
     res.status(200).send('Hello')

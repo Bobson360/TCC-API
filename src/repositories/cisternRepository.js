@@ -68,3 +68,7 @@ exports.getCisternByUser = async (user) => {
 exports.deleteSchedulesController = async (id) => {
   return await Service.findByIdAndDelete(id)
 };
+
+exports.updateCistern = async (data) => {
+  return await Cistern.findByIdAndUpdate(data)
+};
