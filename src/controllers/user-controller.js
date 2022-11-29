@@ -38,12 +38,14 @@ exports.get = async (req, res, next) => {
 }
 
 exports.getUserWithCisternsId = async (req, res, next) => {
-    let userWithCisternId = []
+    let userWithCisternId = ['hello']
     const user = await User.find({})
     user.forEach( async (e) =>  {
         var cis = await getCisternByUser(e._id)
-        if(cis)
+        if(cis){
+            // userWithCisternId = []
             userWithCisternId.push({...e._doc, cisternId: cis._id})
+        }
     });
     
     setTimeout(() => {
