@@ -27,12 +27,11 @@ exports.newSchedulingRepository = async (data) => {
 exports.getSchedulesRepository = async () => {
   let dt = [];
   const data = await Service.find();
-  const cistern = await Cistern.find();
-  const usr = await User.find();
+  // const cistern = await Cistern.find();
+  // const usr = await User.find();
   // const cisterns = await Cistern.find()
   // const cisternsIds = new Set(data.map((el) => el.cistern_id));
   // dt.push({name:'Robson'})
-
   data.forEach(async (e) => {
     dt.push({
       id: e._id,
@@ -40,6 +39,7 @@ exports.getSchedulesRepository = async () => {
       date: e.scheduled_to,
       period: e.period,
       supplierName: await getSupplierNameById(e.suplier_id),
+      volume: e.volume
       // console.log(Object.assign(e , {name: "Robson"}))
     });
   });
@@ -52,7 +52,7 @@ exports.getSchedulesRepository = async () => {
 };
 
 const getUserNameByCisternId = async (cisternId) => {
-    const cistern = await Cistern.findOne({ _id: cisternId });
+  const cistern = await Cistern.findOne({ _id: cisternId });
     const usr = await User.findOne({ _id: cistern.userId });
     return usr.name;
 };

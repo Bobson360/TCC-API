@@ -16,7 +16,6 @@ exports.getAllTagsRfid = async (req, res, next) => {
 }
 
 exports.newTagRFID = async ( req, res, next ) => {
-    console.log(req.body)
     let msg = iotRepository.newTagRFID( req )
     res.status(200).send(msg)
 }

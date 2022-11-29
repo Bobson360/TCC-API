@@ -28,8 +28,6 @@ exports.getCisternIdByDeviceId = async (req, res, next) => {
 }
 
 exports.newTagRFID = async ( req ) => {
-    console.log("Repository")
-    console.log(req.body)
     var tag = TagRFID(req.body)
     console.log(tag)
    return await tag.save()

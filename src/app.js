@@ -3,7 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const config = require('../config')
-const index = require('./routes/')
+const index = require('./routes/indexRoutes')
 
 
 const app = express();
@@ -19,10 +19,10 @@ mongoose.connect(config.connectionString)
  *                         ROUTES                       *
  *                                                      *
  ********************************************************/
-const userRoute = require('./routes/user')
-const cisternaRoute = require('./routes/cisterna')
+const userRoute = require('./routes/userRoutes')
+const cisternaRoute = require('./routes/cisternaRoutes')
 const adminRoute = require('./routes/adminRoutes')
-const iotRoute = require('./routes/iot')
+const iotRoute = require('./routes/iotRoutes')
 const suplierRoute = require('./routes/suplierRoute')
 
 
