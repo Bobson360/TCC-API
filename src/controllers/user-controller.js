@@ -36,6 +36,19 @@ exports.getAll = async (req, res, next) => {
 exports.get = async (req, res, next) => {
     res.status(200).send(await User.findOne({_id: req.params.id}))
 }
+exports.delete = async (req, res, next) => {
+    console.log({_id: req.params.id})
+    try {
+        const deleteUser = await User.findByIdAndRemove({_id: req.params.id})
+        if(deleteUser)
+            return res.status(200).send({message: `usuário ${deleteUser.name} excluido com sucesso` })
+        throw {Error: {
+            message: "Falha ao excluir registro"}
+        }
+    } catch (error) {
+        res.status(404).send(error)
+    }
+}
 
 exports.getUserWithCisternsId = async (req, res, next) => {
     let userWithCisternId = []
