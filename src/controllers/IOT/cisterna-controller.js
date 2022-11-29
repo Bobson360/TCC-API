@@ -127,3 +127,14 @@ exports.getSchedulesController = async ( req, res, nex ) => {
         res.status(500).send({Error: error})
     }
 }
+exports.deleteSchedulesController = async ( req, res, nex ) => {
+    try {
+        var a = await cisRepo.deleteSchedulesController( req.params.id )
+        setTimeout(() => {
+            res.status(200).send(a? {message: "Registro excluido com sucesso"} : {message: 'Erro ao excluir o registro. Verifique os dados e tente novamente'})
+        }, 500);
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+}

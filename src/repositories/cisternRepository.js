@@ -64,3 +64,7 @@ const getSupplierNameById = async (supplier_Id) => {
 exports.getCisternByUser = async (user) => {
   return await Cistern.findOne({ userId: user });
 };
+
+exports.deleteSchedulesController = async (id) => {
+  return await Service.findByIdAndDelete(id)
+};
