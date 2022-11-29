@@ -61,3 +61,12 @@ exports.registerDevice = async ( body ) => {
         return error
     }
 }
+
+exports.deleteDevice = async ( id ) => {
+    console.log(id)
+    try {
+        return Device.findByIdAndDelete(id)
+    } catch (error) {
+        return error
+    }
+}

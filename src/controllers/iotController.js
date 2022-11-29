@@ -43,3 +43,9 @@ exports.getAllDevicesFree = async ( req, res, next ) => {
     const response = await iotRepository.getAllDevicesFree( )
     res.status(200).send( response )
 }
+
+exports.deleteDevice = async ( req, res, next ) => {
+    console.log(req.params.id)
+    const response = await iotRepository.deleteDevice( req.params.id )
+    res.status(200).send( response? {message: "deletado com sucesso"}: {message: "id não encontrado"} )
+}
