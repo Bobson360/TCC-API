@@ -4,6 +4,8 @@ const { Cistern } = require("../models/IOT/cisternModel");
 const { Service } = require("../models/serviceModel");
 const { User } = require("../models/userModel.js");
 const { find } = require("../repositories/supplier-repository");
+const { getDeviceCode } = require("./iotRepository")
+const { findById: findUserById, findNameById: findUserNameById } = require("./userRepository")
 
 exports.getCisternIdByDeviceId = async (req, res, next) => {
   console.log(req.boby.module_id);
@@ -52,6 +54,7 @@ exports.getSchedulesRepository = async () => {
 };
 
 const getUserNameByCisternId = async (cisternId) => {
+  console.log(cisternId)
   const cistern = await Cistern.findOne({ _id: cisternId });
     const usr = await User.findOne({ _id: cistern.userId });
     return usr.name;
@@ -63,6 +66,26 @@ const getSupplierNameById = async (supplier_Id) => {
 
 exports.getCisternByUser = async (user) => {
   return await Cistern.findOne({ userId: user });
+};
+exports.getCisternaWithClientDatasController = async () => {
+  let dt = [];
+  const cistern = await Cistern.find()
+    
+     cistern.forEach(async e => {
+       
+        dt.push({
+        id: e._id,
+        clientId: e.userId,
+        clientName: await findUserNameById(e.userId),
+        lat: e.lat,
+        lng: e.lng,
+        module_code: await getDeviceCode(e.module_id),
+        status: e.status
+      })
+
+  })
+    return dt 
+  
 };
 
 exports.deleteSchedulesController = async (id) => {

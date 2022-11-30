@@ -35,6 +35,7 @@ exports.registerDevice = async ( req, res, next ) => {
 }
 
 exports.getDevices = async ( req, res, next ) => {
+    console.log('devices')
     const response = await iotRepository.getAllDevices( )
     res.status(200).send( response )
 }

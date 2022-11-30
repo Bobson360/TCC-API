@@ -16,5 +16,6 @@ router.post('/agendamento', CisternaController.newScheduling)
 router.get('/agendamento', CisternaController.getSchedulesController)
 router.delete('/agendamento/:id', CisternaController.deleteSchedulesController)
 router.post('/getCisternByUser', CisternaController.getCisternByUserController)
+router.get('/cisternawithclientdatas', CisternaController.getCisternaWithClientDatasController)
 
 module.exports = router

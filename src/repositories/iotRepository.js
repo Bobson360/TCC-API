@@ -38,11 +38,16 @@ exports.checkLinkToSupplier = async ( ) => {
 }
 
 exports.getDevice = async ( id ) => {
-    return await Device.findOne( id )
+    return await Device.findById( id )
 }
 
 exports.getAllDevices = async ( req, res, next ) => {
     return await Device.find()
+}
+
+exports.getDeviceCode = async ( id ) => {
+    const device = await Device.findById( id )
+    return device.device_id
 }
 
 exports.getAllDevicesFree = async ( req, res, next ) => {

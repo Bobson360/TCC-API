@@ -121,6 +121,21 @@ exports.getCisternByUserController = async ( req, res, nex ) => {
         res.status(500).send({Error: error})
     }
 }
+
+exports.getCisternaWithClientDatasController = async ( req, res, nex ) => {
+    try {
+        var a = await cisRepo.getCisternaWithClientDatasController(  )
+        setTimeout(() => {
+            
+            console.log(a)
+            res.status(200).send(a)
+        }, 100);
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+}
+
 exports.getSchedulesController = async ( req, res, nex ) => {
     try {
         var a = await cisRepo.getSchedulesRepository(  )
