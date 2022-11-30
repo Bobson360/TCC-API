@@ -61,6 +61,7 @@ exports.getStatusCisterna = async (req, res, next) => {
     res.status(200).send(await Status.find({cisternaId: req.params.id}))
 }
 exports.getLastStatusCisterna = async (req, res, next) => {
+    console.log("Fez a Requisição")
     res.status(200).send(await Status.find({cisternaId: req.params.id}).sort({created_at: -1 }).limit(1) )
 }
 /**
@@ -145,6 +146,19 @@ exports.getSchedulesController = async ( req, res, nex ) => {
         res.status(500).send({Error: error})
     }
 }
+
+exports.getSchedulesLaterController = async ( req, res, nex ) => {
+    try {
+        var a = await cisRepo.getSchedulesLaterController(  )
+        setTimeout(() => {
+            res.status(200).send(a)
+        }, 500);
+        
+    } catch (error) {
+        res.status(500).send({Error: error})
+    }
+}
+
 exports.deleteSchedulesController = async ( req, res, nex ) => {
     try {
         var a = await cisRepo.deleteSchedulesRepository( req.params.id )

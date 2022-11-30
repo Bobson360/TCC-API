@@ -92,10 +92,29 @@ exports.deleteSchedulesRepository = async (id) => {
   return await Service.findByIdAndDelete(id)
 };
 
+exports.getSchedulesLaterController = async (id) => {
+  let dt = [];
+  let countDays = 0
+  const date = new Date()
+  const serv = await Service.find()
+  serv.forEach(element => {
+    var dateParts = element.scheduled_to.split("/");
+    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+    var days = date - dateObject
+    const diffInDays = days / (1000 * 60 * 60 * 24);
+    console.log(parseInt(diffInDays))
+    if(diffInDays > 0){
+      dt.push(element)
+      countDays++
+    }
+  });
+  console.log(countDays)
+  return dt
+};
+
 exports.deleteCisterByUserIdRepository = async (id) => {
   console.log("deletando cisterna")
   const cistern = await Cistern.findByIdAndDelete({userId: id})
-  console.log(cistern)
   return cistern
 };
 
