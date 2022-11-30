@@ -112,7 +112,6 @@ exports.newScheduling = async ( req, res, nex ) => {
 
 exports.getCisternByUserController = async ( req, res, nex ) => {
 
-    console.log(req.body.user)
     try {
         var a = await cisRepo.getCisternByUser( req.body.user )
         res.status(200).send(a)
@@ -127,7 +126,6 @@ exports.getCisternaWithClientDatasController = async ( req, res, nex ) => {
         var a = await cisRepo.getCisternaWithClientDatasController(  )
         setTimeout(() => {
             
-            console.log(a)
             res.status(200).send(a)
         }, 100);
         
@@ -149,7 +147,7 @@ exports.getSchedulesController = async ( req, res, nex ) => {
 }
 exports.deleteSchedulesController = async ( req, res, nex ) => {
     try {
-        var a = await cisRepo.deleteSchedulesController( req.params.id )
+        var a = await cisRepo.deleteSchedulesRepository( req.params.id )
         setTimeout(() => {
             res.status(200).send(a? {message: "Registro excluido com sucesso"} : {message: 'Erro ao excluir o registro. Verifique os dados e tente novamente'})
         }, 500);

@@ -17,6 +17,10 @@ exports.find = async (id) => {
   var sups = await Supplier.findOne({_id: id});
   return sups.name;
 };
+
+exports.delete = async (id) => {
+  return await Supplier.findByIdAndDelete({_id: id})
+};
 /**
  * Busca a lista de fornecedores -> OK
  * busca a lista de agendamentos para o dia e periodo em questão -> OK

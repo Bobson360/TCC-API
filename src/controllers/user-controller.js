@@ -4,7 +4,8 @@
 
 const mongoose = require('mongoose')
 const { User }  = require('../models/userModel.js')
-const { getCisternByUser } = require('../repositories/cisternRepository')
+const { Cistern }  = require('../models/IOT/cisternModel')
+const { getCisternByUser, deleteCisterByUserIdRepository } = require('../repositories/cisternRepository')
 
 
 exports.print = async (req, res, next) => {
@@ -40,7 +41,8 @@ exports.delete = async (req, res, next) => {
     console.log({_id: req.params.id})
     try {
         const deleteUser = await User.findByIdAndRemove({_id: req.params.id})
-        if(deleteUser)
+        const deleteCistern = await deleteCisterByUserIdRepository(req.params.id)
+        if(deleteUser && deleteCistern)
             return res.status(200).send({message: `usuário ${deleteUser.name} excluido com sucesso` })
         throw {Error: {
             message: "Falha ao excluir registro"}

@@ -88,8 +88,15 @@ exports.getCisternaWithClientDatasController = async () => {
   
 };
 
-exports.deleteSchedulesController = async (id) => {
+exports.deleteSchedulesRepository = async (id) => {
   return await Service.findByIdAndDelete(id)
+};
+
+exports.deleteCisterByUserIdRepository = async (id) => {
+  console.log("deletando cisterna")
+  const cistern = await Cistern.findByIdAndDelete({userId: id})
+  console.log(cistern)
+  return cistern
 };
 
 exports.updateCistern = async (data) => {
